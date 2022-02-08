@@ -1,1 +1,0 @@
-To develop any distributed application using Message Passing Interface (MPI).
