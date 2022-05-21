@@ -6,4 +6,4 @@ Publisher Subscriber Paradigm:
 
 ![s3](https://user-images.githubusercontent.com/60461421/169646601-d8d81d7a-62c6-4319-98d0-02dc1167d97d.png)
 
-Note :- Run the Subscriber first after the activemq commmand. Then the Publisher.
+Note :- Run the Subscriber first after the activemq commmand. Then the Publisher. Also the reason I have kept the file with all excutables on Desktop is because the Git Bash won't allow us to execute the program as it is located deeper inside core directories. Placing it on desktop makes navigation easier. Also install Git Bash.
