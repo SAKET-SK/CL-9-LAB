@@ -3,7 +3,7 @@ The File name to refer for each assignment is mentioned in the circular brackets
 2) Assignment 2 :- To develop any distributed application using Message Passing Interface (MPI).
 3) Assignment 3 :- To develop any distributed application with CORBA program using JAVA IDL. (IDL CORBA)
 4) Assignment 4 :- To develop Token Ring distributed algorithm for leader election. (Election)
-5) Assignment 5 :- To create a simple web service and write any distributed application to consume the web service : Calculator (Calculator App)
-6) Assignment 6 :- To develop any distributed application using Messaging System in Publisher-Subscriber paradigm.
-7) Assignment 7 :- To develop microservices framework based distributed application. (Flask Hello World)
+5) Assignment 5 :- To create a simple web service and write any distributed application to consume the web service : Calculator (CalculatorApp)
+6) Assignment 6 :- To develop any distributed application using Messaging System in Publisher-Subscriber paradigm. (PublisherSubscriber)
+7) Assignment 7 :- To develop microservices framework based distributed application. (DCS7)
 
