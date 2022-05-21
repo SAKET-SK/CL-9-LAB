@@ -1,3 +1,4 @@
+The File name to refer for each assignment is mentioned in the circular brackets (-----) after the problem statement.
 1) Assignment 1 :- Client-Server :- To develop any distributed application through implementing client-server communication programs based on Java Sockets (TCP and UDP) and RMI techniques. FILES TO REFER (client-server socket TCP, client-server socket UDP, RMI_Server)
 2) Assignment 2 :- To develop any distributed application using Message Passing Interface (MPI).
 3) Assignment 3 :- To develop any distributed application with CORBA program using JAVA IDL. (IDL CORBA)
