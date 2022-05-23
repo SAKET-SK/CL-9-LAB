@@ -1,0 +1,37 @@
+================================ TCP / UDP ===================================================
+Q1) What Is Socket?
+A socket is a handle that a local program can pass to the networking API to connect to another machine.
+
+Q2) What Is The Difference Between Tcp And Udp?
+-> TCP is a connection-oriented protocol. Connection-orientation means that the communicating devices should establish a connection before transmitting data and should 
+close the connection after transmitting the data.
+UDP is the Datagram-oriented protocol. This is because there is no overhead for opening a connection, maintaining a connection, and terminating a connection. 
+UDP is efficient for broadcast and multicast types of network transmission.
+-> TCP has a (20-60) bytes variable length header. UDP has an 8 bytes fixed-length header.
+-> TCP is used by HTTP, HTTPs, FTP, SMTP and Telnet. UDP is used by DNS, DHCP, TFTP, SNMP, RIP, and VoIP.
+-> The TCP connection is a byte stream. UDP connection is message stream.
+
+Q3) What Does A Socket Consists Of?
+Socket consists of an IP Address and Port Number.
+
+Q4) How Do I Open A Socket?
+To open a socket: "Socket socket = new Socket(“127.0.0.1”, 5000)" The java.net Socket class represents a Socket.
+
+Q5) How Do I Create An Input Stream? How Do I Create An Output Stream?
+By initializing the Input and output stream 
+private DataInputStream  input   = null;   private DataOutputStream out     = null; 
+
+Q6) How do I close a Socket?
+close() call shuts down the socket associated with the socket descriptor socket, and frees resources allocated to the socket.
+
+Q7) Explain Data Transfer Over Connected Sockets - Send() And Recv()?
+The send() function sends data on the socket with descriptor socket. The send() call applies to all connected sockets. The send() function shall initiate
+transmission of a message from the specified socket to its peer. The send() function shall send a message only when the socket is connected 
+(including when the peer of a connectionless socket has been set via connect()).
+               
+The recv function is used to read incoming data on connection-oriented sockets, or connectionless sockets. When using a connection-oriented protocol, 
+the sockets must be connected before calling recv. When using a connectionless protocol, the sockets must be bound before calling recv.
+
+Q8) Explain Connection Establishment By Server - Accept()?
+The accept() call is used by a server to accept a connection request from a client. When a connection is available, the socket created is ready for use to 
+read data from the process that requested the connection. The call accepts the first connection on its queue of pending connections for the given socket socket.
