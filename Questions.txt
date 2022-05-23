@@ -35,3 +35,117 @@ the sockets must be connected before calling recv. When using a connectionless p
 Q8) Explain Connection Establishment By Server - Accept()?
 The accept() call is used by a server to accept a connection request from a client. When a connection is available, the socket created is ready for use to 
 read data from the process that requested the connection. The call accepts the first connection on its queue of pending connections for the given socket socket.
+
+Q9) How To Make A Socket A Listen-only Connection Endpoint - Listen()?
+The listen() call indicates a readiness to accept client connection requests. It transforms an active socket into a passive socket. Once called, socket can never be used as an active socket to initiate connection requests. Calling listen() is the third of four steps that a server performs to accept a connection.
+
+Q10) How Sockets Can Be Used To Write Client-server Applications Using A Connection-oriented Client-server Technique?
+A socket has a typical flow of events. In a connection-oriented client-to-server model, the socket on the server process waits for requests from a client. To do this, the server first establishes (binds) an address that clients can use to find the server. We can use Socket class for writing Client-Server Applications. It gives
+us access to various of its classes (Data Input Stream and Output Stream) so we can perform and build applications using Client-Server Technique.
+
+Q11) What does a Bind() function do?
+Bind() function in socket programming is used to associate the socket with local address i.e. IP Address, port and address family. to provide an identification to a server, Bind () function associate sockets with IP address and port.  Now, if we bind socket with address e.g. (10.17.18.19, 6500) for server B, a client can connect to this particular server specifying the same IP address and port.
+
+Q12) What This Function Socket() Does?
+int socket(int domain, int type, int protocol);
+The function socket() creates a new socket. The return value is a descriptor, an int, which is our socket. The function has three parameters:
+domain, which describes the protocol family which the socket is created within. type, which determines the type of socket. protocol, which determines the actual protocol used. 
+
+Q13) What info is needed for creating TCP Sockets?
+Four pieces of information are needed to create a TCP socket:
+The local system's IP address.
+The TCP port number the local application is using.
+The remote system's IP address.
+The TCP port number to which the remote application is responding.
+
+======================================================================= RMI ================================================================
+
+Q1) What is the method that is used by the RMI client to connect to remote RMI servers?
+A remote object can be associated with a name using the Naming class's bind or rebind methods. Once a remote object is registered (bound) with the RMI registry on the local host, callers on a remote (or local) host can lookup the remote object by name, obtain its reference, and then invoke remote methods on the object.
+
+Q2) What is RMI?
+RMI stands for Remote Method Invocation. It is a mechanism that allows an object residing in one system (JVM) to access/invoke an object running on another JVM. RMI is used to build distributed applications; it provides remote communication between Java programs. It is provided in the package java.rmi
+
+Q3) What is RMI remote object?
+A remote object is an object that defines methods that can be called by a client located in a remote Java Virtual Machine (JVM). A remote object implements one or more remote interfaces that declare remote methods of the object.
+
+Q4) How does RMI communicate with the remote object?
+RMI uses stub and skeleton object for communication with the remote object.
+
+Q5) Different layers of RMI architecture.
+The RMI system consists of three layers: the stub/skeleton layer, the remote reference layer, and the transport layer.
+- The stub and skeleton layer is responsible for marshaling and unmarshaling the data and transmitting and receiving them to/from the Remote Reference Layer.
+- The Remote reference layer is responsible for carrying out the invocation.
+- The Transport layer is responsible for setting up connections, managing requests, monitoring them and listening for incoming calls.
+
+Q6) What is remote interface in RMI.
+In RMI, a remote interface is an interface that declares a set of methods that may be invoked from a remote Java virtual machine. A remote interface must satisfy the following requirements: A remote interface must at least extend, either directly or indirectly, the interface java. rmi.
+
+Q7) What is the basic principle of RMI architecture ?
+The RMI architecture is based on a very important principle which states that the definition of the behavior and the implementation of that behavior, are separate concepts. RMI allows the code that defines the behavior and the code that implements the behavior to remain separate and to run on separate JVMs.
+
+Q8) What is the role of the java.rmi.Naming Class ?
+The java.rmi.Naming class provides methods for storing and obtaining references to remote objects in the remote object registry. Each method of the Naming class takes as one of its arguments a name that is a String in URL format.
+
+Q9) What is meant by binding in RMI ?
+Binding is the process of associating or registering a name for a remote object, which can be used at a later time, in order to look up that remote object. A remote object can be associated with a name using the bind or rebind methods of the Naming class.
+
+Q10) What is the difference between using bind() and rebind() methods of Naming Class ?
+The bind method bind is responsible for binding the specified name to a remote object, while the rebind method is responsible for rebinding the specified name to a new remote object. In case a binding exists for that name, the binding is replaced.
+
+Q11) What are the steps involved to make work a RMI program ?
+The following steps must be involved in order for a RMI program to work properly:
+•	Compilation of all source files.
+•	Generatation of the stubs using rmic.
+•	Start the rmiregistry.
+•	Start the RMIServer.
+•	Run the client program.
+
+Q12) What is the role of stub in RMI ?
+A stub for a remote object acts as a client’s local representative or proxy for the remote object. The caller invokes a method on the local stub, which is responsible for executing the method on the remote object. When a stub’s method is invoked, it undergoes the following steps:
+•	It initiates a connection to the remote JVM containing the remote object.
+•	It marshals the parameters to the remote JVM.
+•	It waits for the result of the method invocation and execution.
+•	It unmarshals the return value or an exception if the method has not been successfully executed.
+•	It returns the value to the caller.
+
+Q13) Explain Marshalling and demarshalling.
+When an application wants to pass its memory objects across a network to another host or persist it to storage, the in-memory representation must be converted to a suitable format. This process is called marshalling and the revert operation is called demarshalling.
+
+========================================================= MPI ====================================================================================
+
+Q1) What is MPI?
+Message Passing Interface is a standardized and portable message-passing standard designed to function on parallel computing architectures. 
+
+Q2) What is my processor id number ? 
+MPI_COMM_RANK
+
+Q3) How many processes are contained within a communicator? 
+The predefined communicator MPI_COMM_WORLD for seven processes. The numbers indicate the ranks of each process. Every communicator contains a group which is a list of processes.
+
+Q4) How many processors am I using? 
+MPI_COMM_SIZE
+
+Q5) Explain  six functions, which initiate and terminate a computation, identify processes, and send and receive messages in MPI
+ MPI_INIT      		:		 Initiate an MPI computation.
+ MPI_FINALIZE  		:		 Terminate a computation.
+ MPI_COMM_SIZE		:		 Determine number of processes.
+ MPI_COMM_RANK		:		 Determine my process identifier.
+ MPI_SEND      		:		 Send a message.
+ MPI_RECV      		:		 Receive a message.
+ 
+ Q6) What is SPMD ?
+ Single Instruction, Multiple Data (SIMD) units refer to hardware components that perform the same operation on multiple data operands concurrently.
+ 
+ Q7) What is MPMD (Non-SPMD)?
+ The Multiple-Program-Multiple-Data (MPMD) model is. attractive yet rarely exploited in parallel applications. running on distributed memory multi-computers. In. contrast to the Single-Program-Multiple-Data (SPMD)
+ 
+ Q8) What is  MPJ Express
+ MPJ Express is an open source Java message passing library that allows application developers to write and execute parallel applications for multicore processors and compute clusters/clouds. The software is distributed under the MIT (a variant of the LGPL) license.
+ 
+ Q9) What is scatter operation?
+ The communication collective operation “scatter” distributes data of one process in separate parts to all the processes (including itself) within the scope of a communicator. The communicator of size processes disseminates the data of the source process in size-equal partitions.
+ 
+ ========================================================== IDL CORBA ==============================================================================
+ 
+ 
