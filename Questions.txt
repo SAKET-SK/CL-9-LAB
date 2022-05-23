@@ -148,4 +148,142 @@ Q5) Explain  six functions, which initiate and terminate a computation, identify
  
  ========================================================== IDL CORBA ==============================================================================
  
- 
+Q1) Explain The Reason To Implement A Corba Application With Multi-threading?
+CORBA server applications may be multi-threaded for serveral reasons.
+A particular CORBA object may support an operation whose implementation performs some blocking routine. This may be a disk read or database query. Let us assume that the server application processes all CORBA events within a single main thread. This means that the server will be unable to respond to incoming connection requests or invocation requests while the blocking operation is in progress. Multi-threading can be used to avoid these sorts of situations. The server can be more accessible if multiple threads are allowed to process (an block during) incoming CORBA events.
+A single multi-threaded server process supporting many (>25) clients is much more efficient that many (>25) single-threaded server processes each supporting its own client. Running a single application with multiple threads requires less machine resources than running multiple applications. This advantage can be seen even if the operation invocations are of short duration and non-blocking.
+
+Q2)  Explain Does Corba Supports Asynchronous Communication?
+Kind of. At the lowest level CORBA supports two modes of communication:
+A synchronous request/response which allows an application to make a request to some CORBA object and then wait for a response.
+A deferred synchronous request/response which allows an application to make a request to some CORBA object. An empty result will be returned immediately to the application. It can then perform other operations and later poll the ORB to see if the result has been made available.
+At the lowest level, the CORBA deferred synchronous communication does allow a certain degree of asynchronous communication. Polling for responses represents only one form of asynchronous communication. Other more sophisticated asynchronous communication can only be achieved by developing an architecture on top of the lowest levels of CORBA.
+
+Q3) Explain Can Corba Application Have Call Back?
+Yes. The words client and server are really only applicable in the context of a remote call. In other words, the client process can also receive calls on CORBA objects that it implements and hands out the references to.
+
+Q4) Explain Some Reason To Avoid The Development Of Multi-threaded Corba Application?
+Building multi-threaded applications requires an additional efforts in the area of design, development and testing. Issues like concurrency and synchronization become more critical. Difficult to find software bugs are unfortunately easy to introduce. A specific set of application requirements can often be met without resorting to the use of threaded clients or servers. This is not true with all applications. Some do require multi-threading to achieve their desired level of concurrency, performance or scalability.
+
+Q5) Explain What Is Corba Good For?
+CORBA is useful in many situations. Because of the easy way that CORBA integrates machines from so many vendors, with sizes ranging from mainframes through minis and desktops to hand-helds and embedded systems, it is the middleware of choice for large (and even not-so-large) enterprises. One of its most important, as well most frequent, uses is in servers that must handle large number of clients, at high hit rates, with high reliability. CORBA works behind the scenes in the computer rooms of many of the world's largest websites; ones that you probably use every day. Specializations for scalability and fault-tolerance support these systems. But it's not used just for large applications; specialized versions of CORBA run real-time systems, and small embedded systems.
+
+Q6) Explain Can Corba Allow Servers To Cause Client Side Events Or Notifications?
+CORBA communication is inherently asymmetric. Request messages originate from clients and responses originate from servers. The important thing to realize is that a CORBA server is a CORBA object and a CORBA client is a CORBA stub. A client application might use object references to request remote service, but the client application might also implement CORBA objects and be capable of servicing incoming requests. Along the same lines, a server process that implements CORBA objects might have several object references that it uses to make requests to other CORBA objects. Those CORBA objects might reside in client applications. By implementing a CORBA object within an client application, any process that obtains its object reference can ?notify? it by performing an operation on the client-located object.
+
+Q7) What are the CORBA services?
+Some examples of these generic services are:
+-> Naming and trading services that allow objects to refer to and discover other objects on the network. The naming service is a directory service that allows objects to be named and discovered by other objects. 
+-> Notification services that allow objects to notify other objects that some event has occurred. Objects may register their interest in a particular event with the service and, when that event occurs, they are automatically notified. 
+-> Transaction services that support atomic transactions and rollback on failure. Transactions are a fault-tolerance facility that support recovery from errors during an update operation.
+
+Q8) Purpose of IDL
+IDL stands for Interface Definition Language.  Its purpose is to define the capabilities of a distributed service along with a common set of data types for interacting with those distributed services.
+
+Q9) Explain inter ORB Communication
+IIOP (Internet Inter-ORB Protocol) is a protocol that makes it possible for distributed programs written in different programming languages to communicate over the Internet. IIOP is a critical part of a strategic industry standard, the Common Object Request Broker Architecture (CORBA).
+
+================================================ Election Algorithm ===================================================================
+
+Q1) Need for election algorithm.
+Leader election is the simple idea of giving one thing (a process, host, thread, object, or human) in a distributed system some special powers. Those special powers could include the ability to assign work, the ability to modify a piece of data, or even the responsibility of handling all requests in the system.
+
+Q2) What is ring algorithm
+This algorithm applies to systems organized as a ring(logically or physically). In this algorithm we assume that the link between the process are unidirectional and every process can message to the process on its right only. Data structure that this algorithm uses is active list, a list that has priority number of all active processes in the system.
+-> If process P1 detects a coordinator failure, it creates new active list which is empty initially. It sends election message to its neighbour on right and adds number 1 to its active list.
+-> If process P2 receives message elect from processes on left, it responds in 3 ways:
+(I) If message received does not contain 1 in active list then P1 adds 2 to its active list and forwards the message.
+(II) If this is the first election message it has received or sent, P1 creates new active list with numbers 1 and 2. It then sends election message 1 followed by 2.
+(III) If Process P1 receives its own election message 1 then active list for P1 now contains numbers of all the active processes in the system. Now Process P1 detects highest priority number from list and elects it as the new coordinator.
+
+Q3) What is Bully algorithm.
+This algorithm applies to system where every process can send a message to every other process in the system.
+Algorithm – Suppose process P sends a message to the coordinator.
+-> If coordinator does not respond to it within a time interval T, then it is assumed that coordinator has failed.
+-> Now process P sends election message to every process with high priority number.
+-> It waits for responses, if no one responds for time interval T then process P elects itself as a coordinator.
+-> Then it sends a message to all lower priority number processes that it is elected as their new coordinator.
+-> However, if an answer is received within time T from any other process Q,
+(I) Process P again waits for time interval T’ to receive another message from Q that it has been elected as coordinator.
+(II) If Q doesn’t responds within time interval T’ then it is assumed to have failed and algorithm is restarted.
+
+=========================================================== Web Service ========================================================================
+
+Q1) Define Web Services
+A web service is either: a service offered by an electronic device to another electronic device, communicating with each other via the Internet, or a server running on a computer device, listening for requests at a particular port over a network, serving web documents.
+
+Q2) Explain Types of Web Services
+There are two types of web services:
+SOAP stands for Simple Object Access Protocol. SOAP is an XML based industry standard protocol for designing and developing web services. Since it‟s XML based, it‟s platform and language independent. So, our server can be based on JAVA and client can be on .NET, PHP etc. and vice versa.
+REST: REST (Representational State Transfer ) is an architectural style for developing web services. It‟s getting popularity recently because it has small learning curve when compared to SOAP. Resources are core concepts of Restful web services and they are uniquely identified by their URIs.
+
+Q3) Explain Web service architectures.
+As part of a web service architecture, there exist three major roles.
+-> Service Provider is the program that implements the service agreed for the web service and exposes the service over the internet/intranet for other applications to interact with.
+-> Service Requestor is the program that interacts with the web service exposed by the Service Provider. It makes an invocation to the web service over the network to the Service Provider and exchanges information.
+-> Service Registry acts as the directory to store references to the web services.
+
+Q4) What is SOAP web services.
+-> Simple Object Access Protocol (SOAP) is an XML-based protocol for accessing web services. It is a W3C recommendation for communication between two applications, and it is a platform- and language-independent technology in integrated distributed applications.
+-> Universal Description, Discovery, and Integration (UDDI): UDDI is an XMLbased framework for describing, discovering, and integrating web services. It acts as a directory of web service interfaces described in the WSDL language.
+-> Web Services Description Language (WSDL): WSDL is an XML document containing information about web services, such as the method name, method parameters, and how to invoke the service.
+
+Q5) What is RESTful web services.
+REST service is not a collection of a paradigm or specific rules; it is instead the style architecture for software. Those apps that are designed using this architecture are collectively termed as RESTful web services. Contrasting SOAP, which aims at actions, REST deals majorly on the resources.
+It establishes the resources through the use of URL as well as depends on the nature of the transport protocol (like HTTP's: GET, PUT, POST, DELETE, etc.) used to perform the resources. The allocation of resources in REST depends on the URL. It is more like conventions based application
+
+Q6) Difference between SOAP and REST
+-> SOAP stands for Simple Object Access Protocol whereas REST stands for Representational State Transfer.
+-> SOAP is a protocol whereas REST is an architectural pattern.
+-> SOAP uses service interfaces to expose its functionality to client applications while REST uses Uniform Service locators to access to the components on the hardware device.
+-> SOAP needs more bandwidth for its usage whereas REST doesn’t need much bandwidth.
+-> Comparing SOAP vs REST API, SOAP only works with XML formats whereas REST work with plain text, XML, HTML and JSON.
+-> SOAP cannot make use of REST whereas REST can make use of SOAP.
+
+=============================================== Pub Sub ==========================================================================
+
+Q1) What is Message-Oriented Middleware (MOM). 
+The full form of MOM is Message-Oriented Middleware which is an infrastructure that allows communication and exchanges the data (messages). It involves the passing of data between applications using a communication channel that carries self-contained units of information (messages).In a MOM-based communication environment, messages are sent and received asynchronously.
+
+Q2) What is Enterprise Messaging System: 
+Enterprise messaging system (EMS) is a messaging system allowing software applications and systems to communicate semantically. The semantics can be applied by sending precise messages to and fro throughout the enterprise. The messages are asynchronous data (messages not sent or processed in real time, meaning not like a chat room or telephone conversation) sent by one application or system to another application or system and stored in the queue of the receiving program until processed. The system is not dependent on a particular operating system or programming language.
+
+Q3) Explain JMS interfaces
+Java's implementation of an EMS in the Application Programming Interface (API) format is known as JMS.
+JMS allows distributed Java applications to communicate with applications developed in any other technology that understands messaging through asynchronous messages. JMS applications contain a provider, clients, messages, and administrated objects.
+JMS defines a set of high-level interfaces that encapsulate several messaging concepts. These high-level interfaces are further extended for the Point-To-Point and publish/subscribe messaging domains:
+-> ConnectionFactory: This is an administered object with the ability to create a connection.
+-> Connection: This is an active connection handle to the provider.
+-> Destination: This is an administered object that encapsulates the identity of a message destination where messages are sent to/received from.
+-> Session: This is a single-threaded context for sending/receiving messages. To ensure a simple session-based transaction, concurrent access to a message by multiple threads is restricted. We can use multiple sessions for a multithreaded application.
+-> MessageProducer: This is used to send messages.
+-> MessageConsumer: This is used to receive messages.
+
+====================================================== Flask ==================================================================================
+Q1) Explain the following terms
+
+1) Microservices 
+Microservices - also known as the microservice architecture - is an architectural style that structures an application as a collection of services that are Highly maintainable and testable Loosely coupled Independently deployable Organized around business capabilities Owned by a small team
+
+2) Web frameworks 
+Web Development Framework or simply “web framework” is a software framework that offers a set of tools to support developing web applications including web services, web resources, and web APIs (Application Programming Interfaces). Web development framework offers a wide range of prewritten components, code snippets, and entire application templates to ease the work of web developers. Frameworks provide standardized development and design conventions that can be applied and modified to fit the needs of your website. The purpose of a web development framework is to automate the common tasks performed during the development phase. Frameworks give us a place to start so that we can focus on features rather than configuration details.
+
+3) Common web framework functionality
+Frameworks provide functionality in their code. The extensions to perform common operations required to run web applications. These common procedures include
+1.	URL Routing
+2.	HTML, XML, JSON, and other output format templating
+3.	Database manipulation
+4.	Secure deposit against Cross-site submission forgery (CSRF) and other attacks
+5.	Session safe-keeping and retrieval
+
+4) Flask
+Flask is a web application framework written in Python. Armin Ronacher, who leads an international group of Python enthusiasts named Pocco, develops it. Flask is based on Werkzeug WSGI toolkit and Jinja2 template engine. Both are Pocco projects
+
+5) WSGI
+WSGI is the Web Server Gateway Interface. It is a specification that describes how a web server communicates with web applications, and how web applications can be chained together to process one request.
+
+6) Werkzeug 
+Werkzeug is a collection of libraries that can be used to create a WSGI (Web Server Gateway Interface) compatible web application in Python.
+
+7) Virtual Environment
+A virtual environment is a tool that helps to keep dependencies required by different projects separate by creating isolated python virtual environments for them. This is one of the most important tools that most of the Python developers use.
